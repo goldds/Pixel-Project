@@ -14,10 +14,12 @@ function makeGrid() {
 //parameters fetching
   const hieght = urlParams.get('height');
   const width = urlParams.get('width');
-  
+  const size = urlParams.get('size')
+  console.log(size)
+  const styleDef = `height:${size}; width:${size};`
 
 //grid creation
-  var row = "<tr>" + (("<td class = 'pixel' style = '' id = ></td>").repeat(width)) + "</tr>";
+  var row = "<tr>" + ((`<td class = 'pixel' style= ${styleDef} id = ></td>`).repeat(width)) + "</tr>";
   var grid = row.repeat(hieght);
 
   var pixelCanavs = document.getElementById("pixelCanvas");
@@ -30,11 +32,10 @@ function makeGrid() {
   function callback(id){
     return function () {
       if(pixels[id].style.backgroundColor == ''){
-        draw(pixels[id])
-        console.log(pixels[id].style.background-color)
+        draw(pixels[id],styleDef)
     }
     else{
-      pixels[id].setAttribute("style", 'background-color:""' ) 
+      pixels[id].setAttribute("style", (styleDef + " background-color:") ) 
 
     }
   }
@@ -49,13 +50,10 @@ function makeGrid() {
 
 // grid editing
 
-function draw(pixel) {
-  if (pixel.style != ''){
-    var color = (document.getElementById("colorPicker")).value 
-  var css = "background-color:" + color +";"
+function draw(pixel,styleDef) {
+  var color = (document.getElementById("colorPicker")).value 
+  var css = styleDef + " background-color:" + color +";"
   pixel.setAttribute("style", css)
-  } 
-  
 }
 
 
