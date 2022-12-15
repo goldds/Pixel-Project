@@ -25,6 +25,8 @@ td {
 table {
     border-collapse: collapse;
     margin: 0 auto;
+    height: attr(output);
+    width: attr(output);
 }
 
 tr {
@@ -38,3 +40,9 @@ td {
 input[type=number] {
     width: 6em;
 }
+
+div.input{
+    margin: 1em;
+
+}
+
